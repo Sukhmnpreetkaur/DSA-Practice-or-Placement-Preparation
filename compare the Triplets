@@ -1,1 +1,93 @@
+#!/bin/python3
 
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'compareTriplets' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY a
+#  2. INTEGER_ARRAY b
+#
+
+def compareTriplets(a, b):
+    # Write your code here
+    alice = 0
+    bob = 0
+    
+    for i in range(3):
+        if a[i] > b[i]:
+            alice += 1
+        elif a[i] < b[i]:
+            bob += 1
+        # if equal, no points
+    
+    return [alice, bob]
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    a = list(map(int, input().rstrip().split()))
+
+    b = list(map(int, input().rstrip().split()))
+
+    result = compareTriplets(a, b)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+
+Explanation of the Solution
+You are comparing three scores of Alice with three scores of Bob.
+Example:
+Alice → a = [5, 6, 7]
+Bob → b = [3, 6, 10]
+The rules:
+If a[i] > b[i] → Alice gets 1 point
+If a[i] < b[i] → Bob gets 1 point
+If a[i] == b[i] → no one gets a point
+
+Step-by-step Explanation of the Code
+1. Create two score counters
+alice = 0
+bob = 0
+These will count the points each person earns.
+2. Loop through the 3 values
+for i in range(3):
+This means:
+i = 0 → compare first values
+i = 1 → compare second values
+i = 2 → compare third values
+
+3. Compare each score
+if a[i] > b[i]:
+    alice += 1
+elif a[i] < b[i]:
+    bob += 1
+
+If Alice's score is bigger → add 1 to Alice
+If Bob’s score is bigger → add 1 to Bob
+If equal → do nothing
+
+4. Return the final scores
+return [alice, bob]
+This returns the result in the format:
+[Alice's score, Bob's score]
+
+Example
+Input:
+5 6 7
+3 6 10
+
+Comparison:
+5 vs 3 → Alice +1
+6 vs 6 → no points
+7 vs 10 → Bob +1
+
+Final output:
+1 1
