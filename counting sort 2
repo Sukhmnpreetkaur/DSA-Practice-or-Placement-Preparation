@@ -1,0 +1,28 @@
+#!/bin/python3
+
+import os
+import sys
+
+def countingSort(arr):
+    # Step 1: Create frequency array
+    freq = [0] * 100
+
+    # Step 2: Count occurrences
+    for num in arr:
+        freq[num] += 1
+
+    # Step 3: Build sorted array
+    sorted_arr = []
+    for i in range(100):
+        sorted_arr.extend([i] * freq[i])
+
+    return sorted_arr
+
+
+if __name__ == '__main__':
+    n = int(input().strip())
+    arr = list(map(int, input().rstrip().split()))
+
+    result = countingSort(arr)
+
+    print(' '.join(map(str, result)))
